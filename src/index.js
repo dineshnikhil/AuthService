@@ -22,10 +22,10 @@ const createAndProcessServer = () => {
 		const userServices = new UserServices();
 		// const token = userServices.createToken({ email: 'dinesh@gmail', id: 2 });
 		// console.log(token);
-		const result = userServices.validateToken(
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmVzaEBnbWFpbCIsImlkIjoyLCJpYXQiOjE2ODkxMzY3MTMsImV4cCI6MTY4OTE0MDMxM30.ezGtbQ_SZY9n9cGE5AOSSiHLUxIkWVHsH_QQBk4p2mc'
-		);
-		console.log(result);
+		// const result = userServices.validateToken(
+		// 	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmVzaEBnbWFpbCIsImlkIjoyLCJpYXQiOjE2ODkxMzY3MTMsImV4cCI6MTY4OTE0MDMxM30.ezGtbQ_SZY9n9cGE5AOSSiHLUxIkWVHsH_QQBk4p2mc'
+		// );
+		// console.log(result);
 	});
 };
 
