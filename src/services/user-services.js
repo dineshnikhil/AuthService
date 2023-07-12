@@ -23,16 +23,38 @@ class UserServices {
 		try {
 			// step1 => fetch the user using the email
 			const user = await this.userRepository.getUserByEmail(email);
+
+			if (!user) {
+				console.log('User not found with the associate email.!');
+				throw { error: 'USer not found with this email.!' };
+			}
 			// step2 => compare incoming plain password with stores encrypted password
 			const passwordMatch = this.checkPassword(password, user.password);
 
 			if (!passwordMatch) {
 				console.log('Password does not match!');
-				throw { error: 'Incorrect password' };
+				throw { error: 'Incorrect password provided.!' };
 			}
 			// step3 => if passwords match then create jwt and send it to the user
 			const newJwt = this.createToken({ email: user.email, id: user.id });
 			return newJwt;
+		} catch (error) {
+			console.log('Something went wrong in service layer..!');
+			throw { error };
+		}
+	}
+
+	async isAuthenticated(userToken) {
+		try {
+			const token = this.validateToken(userToken);
+			if (!token) {
+				throw { error: 'Invalide token.!' };
+			}
+			const user = await this.userRepository.getUserById(token.id);
+			if (!user) {
+				throw { error: 'No user with this token exsists..!' };
+			}
+			return user.id;
 		} catch (error) {
 			console.log('Something went wrong in service layer..!');
 			throw { error };
