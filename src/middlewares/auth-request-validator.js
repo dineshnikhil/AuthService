@@ -11,6 +11,20 @@ const validateUserAuth = (req, res, next) => {
 	next();
 };
 
+const validateIsAdminRequest = (req, res, next) => {
+	if (!req.body.id) {
+		return res.status(400).json({
+			data: {},
+			success: false,
+			message: 'user id parameter is missing from the request.!',
+			error: 'id parameter is missing from the request.!',
+		});
+	}
+
+	next();
+};
+
 module.exports = {
 	validateUserAuth,
+	validateIsAdminRequest,
 };

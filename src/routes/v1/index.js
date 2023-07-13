@@ -15,5 +15,10 @@ router.post(
 	UserControllers.signIn
 );
 router.get('/isAuthenticate', UserControllers.isAuthenticated);
+router.get(
+	'/isAdmin',
+	AuthRequestValidators.validateIsAdminRequest,
+	UserControllers.isAdmin
+);
 
 module.exports = router;

@@ -66,8 +66,28 @@ const isAuthenticated = async (req, res) => {
 	}
 };
 
+const isAdmin = async (req, res) => {
+	try {
+		const response = await userServices.isAdmin(req.body.id);
+		return res.status(200).json({
+			success: true,
+			error: {},
+			data: response,
+			message: 'Successfully fetched the autherised details of the user.!',
+		});
+	} catch (error) {
+		return res.status(500).json({
+			data: {},
+			success: true,
+			message: 'Unable to fetch the autherised deails of the user.!',
+			error: error,
+		});
+	}
+};
+
 module.exports = {
 	create,
 	signIn,
 	isAuthenticated,
+	isAdmin,
 };

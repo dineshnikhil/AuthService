@@ -1,13 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const sequelize = require('sequelize');
 
 require('dotenv').config();
 
-const { PORT, JWT_KEY } = require('./config/serverConfig');
+const { PORT } = require('./config/serverConfig');
 const apiRoutes = require('./routes/index');
 
-const { UserServices } = require('./services/index');
 const db = require('./models/index');
 
 const createAndProcessServer = () => {
@@ -24,14 +22,6 @@ const createAndProcessServer = () => {
 		if (false) {
 			db.sequelize.sync({ alert: true });
 		}
-
-		const userServices = new UserServices();
-		// const token = userServices.createToken({ email: 'dinesh@gmail', id: 2 });
-		// console.log(token);
-		// const result = userServices.validateToken(
-		// 	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpbmVzaEBnbWFpbCIsImlkIjoyLCJpYXQiOjE2ODkxMzY3MTMsImV4cCI6MTY4OTE0MDMxM30.ezGtbQ_SZY9n9cGE5AOSSiHLUxIkWVHsH_QQBk4p2mc'
-		// );
-		// console.log(result);
 	});
 };
 
