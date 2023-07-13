@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const sequelize = require('sequelize');
 
 require('dotenv').config();
 
@@ -7,6 +8,7 @@ const { PORT, JWT_KEY } = require('./config/serverConfig');
 const apiRoutes = require('./routes/index');
 
 const { UserServices } = require('./services/index');
+const db = require('./models/index');
 
 const createAndProcessServer = () => {
 	const app = express();
@@ -18,6 +20,10 @@ const createAndProcessServer = () => {
 
 	app.listen(PORT, async () => {
 		console.log('Server is started on port', PORT);
+
+		if (false) {
+			db.sequelize.sync({ alert: true });
+		}
 
 		const userServices = new UserServices();
 		// const token = userServices.createToken({ email: 'dinesh@gmail', id: 2 });
